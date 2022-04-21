@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile
+from .models import Profile, Appointment
 
 
 class ProfileForm(forms.ModelForm):
@@ -7,3 +7,8 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         exclude =['user', 'identity_number']
         fields = '__all__'
+
+class AppointmentForm(forms.ModelForm):
+    class Meta:
+        model = Appointment
+        fields = '__all__'        
