@@ -2,8 +2,8 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
-from .models import Profile
-from .forms import ProfileForm
+from .models import Appointment, Profile
+from .forms import AppointmentForm, ProfileForm
 
 # Create your views here.
 
@@ -61,7 +61,7 @@ def profile(request):
             # profile=Profile(image,name,bio)
             profile.save()
 
-            # profile=Profile.objects.get(user= request.user.id)
+           
             messages.success(request, 'Profile has been updated')
 
             return redirect ('/profile')
@@ -76,4 +76,44 @@ def profile(request):
             profile.save()
         else:
             profile= request.user.profile 
-        return render(request, 'profile/profile.html', {'form': form, 'profile':profile})     
+        return render(request, 'profile/profile.html', {'form': form, 'profile':profile}) 
+
+
+def appointment(request):
+    form = AppointmentForm
+
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST, request.FILES)
+        
+        
+        appointment=Appointment.objects.get(user= request.user.id)
+       
+        if form.is_valid():       
+
+
+            appointment.name=form.cleaned_data['name']  
+            appointment.phone=form.cleaned_data['phone'] 
+            appointment.email=form.cleaned_data['email'] 
+
+            
+            appointment.save()
+
+           
+            messages.success(request, 'Your appointment has been booked')
+
+            return redirect ('/appointment_form')
+        else:
+            return render(request, 'book/appointment_form.html', {'form': form})
+
+    else:
+        
+
+        if Appointment.objects.filter(user = request.user.id).count() == 0:
+            appointment = Appointment(user=request.user, name=request.user.username, email=request.user.email)
+            appointment.save()
+        else:
+            appointment= request.user.appointment 
+        return render(request, 'book/appointment_form.html', {'form': form, 'appointment':appointment})         
+
+
+
