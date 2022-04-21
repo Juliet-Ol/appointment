@@ -11,4 +11,5 @@ class ProfileForm(forms.ModelForm):
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
+        exclude =['sent_date']
         fields = '__all__'        

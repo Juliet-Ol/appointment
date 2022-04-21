@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
+
+from django.contrib.auth.decorators import login_required
 from .models import Appointment, Profile
 from .forms import AppointmentForm, ProfileForm
 
@@ -78,7 +80,7 @@ def profile(request):
             profile= request.user.profile 
         return render(request, 'profile/profile.html', {'form': form, 'profile':profile}) 
 
-
+@login_required(login_url='login')
 def appointment(request):
     form = AppointmentForm
 
