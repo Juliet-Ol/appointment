@@ -91,7 +91,8 @@ def appointment(request):
         if form.is_valid():       
 
 
-            appointment.name=form.cleaned_data['name']  
+            appointment.first_name=form.cleaned_data['name'] 
+            appointment.last_name=form.cleaned_data['name']  
             appointment.phone=form.cleaned_data['phone'] 
             appointment.email=form.cleaned_data['email'] 
 
@@ -109,7 +110,7 @@ def appointment(request):
         
 
         if Appointment.objects.filter(user = request.user.id).count() == 0:
-            appointment = Appointment(user=request.user, name=request.user.username, email=request.user.email)
+            appointment = Appointment(user=request.user, first_name=request.user.first_name, last_name=request.user.last_name,  email=request.user.email)
             appointment.save()
         else:
             appointment= request.user.appointment 

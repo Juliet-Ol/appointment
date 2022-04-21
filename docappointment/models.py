@@ -13,7 +13,8 @@ class Profile(models.Model):
     bio = models.TextField(max_length=300, default='') 
 
 class Appointment(models.Model):
-    name = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50, null=True)
     email = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
     request = models.TextField(blank=True)

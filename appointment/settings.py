@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'appointment.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'doc',
+        'NAME': 'docs',
         'USER': 'juliet',
     'PASSWORD':'juliet',
     }
