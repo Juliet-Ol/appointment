@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'docappointment',
     'bootstrap5',
     'tailwind',
-    'cloudinary'
+    'cloudinary',
+    'crispy_forms',
     
 ]
 
