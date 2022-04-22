@@ -147,6 +147,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL='index'
 LOGOUT_REDIRECT_URL='login'
 
+EMAIL_USE_TLS = True  
+EMAIL_HOST = 'smtp.gmail.com'  
+EMAIL_HOST_USER = 'agutujuliet@gmail.com'  
+EMAIL_HOST_PASSWORD = 'yourpassword'  
+EMAIL_PORT = 587  
+
 cloudinary.config( 
   cloud_name = "dkcivjz16", 
   api_key = "471245994175868", 
